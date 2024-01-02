@@ -1,24 +1,18 @@
 const express = require('express')
 const app = express()
-const cors = require('cors');
 const dotenv = require("dotenv")
 dotenv.config()
-var corsOptions = {
-    origin: 'https://tame-pear-duck-sock.cyclic.app',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
+const cors = require('cors');
 const emailRoutes = require('./routes/emailRoutes.js')
 const authRoutes = require('./routes/authRoutes.js');
 const { functions } = require("./essential funcs/firebase functions/init.js");
+const { corsMiddleware } = require('./essential funcs/essentials/middleware.js')
 const Port = process.env.PORT || 3000
-
-app.use(cors(corsOptions))
+app.use(cors())
 app.use(emailRoutes)
 app.use(authRoutes)
 
-app.get('/', (req, res) => {
-    console.log(process.env.apikey);
+app.get('/', corsMiddleware, (req, res, next) => {
     res.send('Connected')
 })
 
