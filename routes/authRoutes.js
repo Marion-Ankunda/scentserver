@@ -6,7 +6,6 @@ router.get('/scentsapi/signup', (req, res) => {
     console.log(req.query);
     try {
         signUpfunc(req.query.email, req.query.password).then((e) => {
-            console.log(e);
             res.send(e)
         })
     } catch (error) {

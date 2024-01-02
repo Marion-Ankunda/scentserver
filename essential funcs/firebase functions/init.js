@@ -4,8 +4,8 @@ const { getFirestore } = require("firebase/firestore");
 const { initializeApp } = require("firebase-admin/app");
 const { getAuth } = require("firebase-admin/auth");
 const functions = require('firebase-functions');
-let keys = functions.config()?.scent
-
+let keys =process.env 
+//  functions.config()?.scent
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
