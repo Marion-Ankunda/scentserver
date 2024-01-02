@@ -19,10 +19,10 @@ app.get('/', (req, res) => {
     res.send('Connected')
 })
 
-// if (process.env.NODE_ENV !== 'test') {
-//     app.listen(Port, () => {
-//         console.log('Connected on ' + ' http://localhost:' + Port + '/')
-//     })
-// }
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(Port, () => {
+        console.log('Connected on ' + ' http://localhost:' + Port + '/')
+    })
+}
 module.exports = app
 exports.app = functions.https.onRequest(app);
