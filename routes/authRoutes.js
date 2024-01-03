@@ -3,7 +3,7 @@ const { firebaseConfig } = require('../essential funcs/firebase functions/init')
 
 const router = require('express').Router()
 
-router.get('/scentsapi/signup', corsMiddleware,(req, res) => {
+router.get('/scentsapi/signup', (req, res) => {
     console.log(req.query);
     try {
         signUpfunc(req.query.email, req.query.password).then((e) => {
@@ -13,7 +13,8 @@ router.get('/scentsapi/signup', corsMiddleware,(req, res) => {
         res.send('error')
     }
 })
-router.get('/scentsapi/keys/auth',corsMiddleware,(req, res) => {
+router.get('/scentsapi/keys/auth',(req, res) => {
+
     try {
         res.send(firebaseConfig)
     } catch (error) {
