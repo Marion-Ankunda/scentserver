@@ -13,7 +13,7 @@ app.use(emailRoutes)
 app.use(authRoutes)
 
 app.get('/', corsMiddleware, (req, res, next) => {
-    res.send('Connected')
+        res.send('Connected')
 })
 
 if (process.env.NODE_ENV !== 'test') {

@@ -13,7 +13,7 @@ router.get('/scentsapi/signup', corsMiddleware,(req, res) => {
         res.send('error')
     }
 })
-router.get('/scentsapi/keys/auth', corsMiddleware,(req, res) => {
+router.get('/scentsapi/keys/auth',corsMiddleware,(req, res) => {
     try {
         res.send(firebaseConfig)
     } catch (error) {
