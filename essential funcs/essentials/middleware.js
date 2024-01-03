@@ -5,7 +5,7 @@ let configs = {
     "origin": 'https://tame-pear-duck-sock.cyclic.app',
     "optionsSuccessStatus": 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
-var allowlist = ['https://tame-pear-duck-sock.cyclic.app']
+var allowlist = ['scentsational-b1ue6858h-marions-projects-7c99b152.vercel.app','scentsational-git-main-marions-projects-7c99b152.vercel.app','https://scentsational.vercel.app/']
 var corsOptionsDelegate = function (req,callback) {
     var corsOptions;
     if (allowlist.indexOf(req.header('Origin')) !== -1) {
