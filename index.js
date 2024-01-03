@@ -11,6 +11,7 @@ const Port = process.env.PORT || 3000
 var allowlist = ['scentsational-b1ue6858h-marions-projects-7c99b152.vercel.app','http://localhost:5173','scentsational-git-main-marions-projects-7c99b152.vercel.app','https://scentsational.vercel.app/']
 var corsOptionsDelegate = function (req,res,next) {
     var corsOptions;
+    console.log(req.header('Origin'));
     if (allowlist.indexOf(req.header('Origin')) !== -1) {
         corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
         next() // callback expects two parameters: error and options
