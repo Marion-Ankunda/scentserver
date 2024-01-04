@@ -1,5 +1,5 @@
 const cors = require('cors');
-var allowlist = ['http://localhost:5173', 'scentsational-git-main-marions-projects-7c99b152.vercel.app', 'https://scentsational.vercel.app/']
+var allowlist = ['http://localhost:5173', 'https://scentsational.vercel.app/']
 async  function corsOptionsDelegate (req,res,next) {
     console.log(req.header('origin'));
     console.log(req.headers.origin);
