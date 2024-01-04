@@ -1,9 +1,9 @@
-const { corsMiddleware } = require('../essential funcs/essentials/middleware');
+const { FieldPath } = require('firebase-admin/firestore');
 const { firebaseConfig } = require('../essential funcs/firebase functions/init');
 
 const router = require('express').Router()
 
-router.get('/scentsapi/signup', (req, res) => {
+router.get('/scentsapi/signup',  (req, res) => {
     console.log(req.query);
     try {
         signUpfunc(req.query.email, req.query.password).then((e) => {
@@ -13,14 +13,15 @@ router.get('/scentsapi/signup', (req, res) => {
         res.send('error')
     }
 })
-router.get('/scentsapi/keys/auth',(req, res) => {
-
+router.get('/scentsapi/keys/auth', (req, res) => {
+    console.log(req.headers.origin);
     try {
-        res.send(firebaseConfig)
-    } catch (error) {
-        console.log(error);
-        res.send('error')
-    }
-})
+            res.send(firebaseConfig)
+        } catch (error) {
+            console.log(error);
+            res.send('error')
+        }
+}
+)
 
 module.exports = router;
