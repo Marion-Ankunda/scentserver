@@ -4,7 +4,7 @@ const { corsOptionsDelegate } = require('../essential funcs/essentials/middlewar
 
 const router = require('express').Router()
 
-router.get('/scentsapi/signup',  (req, res) => {
+router.get('/scentsapi/signup', (req, res) => {
     console.log(req.query);
     try {
         signUpfunc(req.query.email, req.query.password).then((e) => {
@@ -14,15 +14,19 @@ router.get('/scentsapi/signup',  (req, res) => {
         res.send('error')
     }
 })
-router.get('/scentsapi/keys/auth',corsOptionsDelegate, (req, res) => {
+router.get('/scentsapi/keys/auth', (req, res) => {
     console.log(req.headers.origin);
+
     console.log(req.header('origin'));
-    try {
+    corsOptionsDelegate(req, res, () => {
+        try {
             res.send(firebaseConfig)
         } catch (error) {
             console.log(error);
             res.send('error')
         }
+    })
+
 }
 )
 
