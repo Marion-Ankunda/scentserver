@@ -15,6 +15,7 @@ router.get('/scentsapi/signup',  (req, res) => {
 })
 router.get('/scentsapi/keys/auth', (req, res) => {
     console.log(req.headers.origin);
+    console.log(req.header('origin'));
     try {
             res.send(firebaseConfig)
         } catch (error) {
