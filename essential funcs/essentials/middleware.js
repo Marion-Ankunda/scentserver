@@ -20,4 +20,4 @@ var corsOptionsDelegate = function (req,res,next) {
 
 
 
-module.exports = { corsMiddleware: cors(corsOptionsDelegate), }
+module.exports = {corsOptionsDelegate }

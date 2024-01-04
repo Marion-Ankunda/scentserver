@@ -1,6 +1,6 @@
 const { FieldPath } = require('firebase-admin/firestore');
 const { firebaseConfig } = require('../essential funcs/firebase functions/init');
-const { corsMiddleware } = require('../essential funcs/essentials/middleware');
+const { corsOptionsDelegate } = require('../essential funcs/essentials/middleware');
 
 const router = require('express').Router()
 
@@ -14,7 +14,7 @@ router.get('/scentsapi/signup',  (req, res) => {
         res.send('error')
     }
 })
-router.get('/scentsapi/keys/auth',corsMiddleware, (req, res) => {
+router.get('/scentsapi/keys/auth',corsOptionsDelegate, (req, res) => {
     console.log(req.headers.origin);
     console.log(req.header('origin'));
     try {
