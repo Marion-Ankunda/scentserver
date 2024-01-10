@@ -15,8 +15,8 @@ let transporter = nodemailer.createTransport({
     },
     tls: {
         rejectUnauthorized: false
-    }, 
-    port: 465,secureConnection: true
+    },
+    port: 465, secure: true
 })
 function intitiate(email, htmlToSend) {
     const mailOptions = {
@@ -66,7 +66,7 @@ async function sendEmail(data) {
     const htmlToSend = template(replacements);
 
     // use a template file with nodemailer
-  //  intitiate(data.email, htmlToSend)
+    //  intitiate(data.email, htmlToSend)
 
     const mailOptions = {
         from: 'scentsationaal@gmail.com',
@@ -94,7 +94,7 @@ async function sendEmail(data) {
 }
 
 
- function sendNotification(data) {
+function sendNotification(data) {
     // point to the template folder
     const source = fs.readFileSync(notifyPath, 'utf-8').toString();
     const template = handlebars.compile(source);
