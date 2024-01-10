@@ -45,36 +45,13 @@ async function sendEmail(data) {
     // use a template file with nodemailer
     //  intitiate(data.email, htmlToSend)
 
-    const mailOptions = {
-        from: 'scentsationaal@gmail.com',
-        to: data.email,
-        subject: ' Purchase Initiated',
-        text: 'Scentsational',
-        html: htmlToSend,
-        context: {
-            // replace {{company}} with My Company
-        }
-    }
-    await new Promise((resolve,reject)=>{
-    
-    try {
-        transporter.sendMail(mailOptions, function (err, info) {
-            console.log('initiated');
-            if (err) {
-              reject(err);
-            } else {
-                resolve("Email sent: " + info.response);
-            }
-        })
-    } catch (error) {
-        console.log(error);
-    }
-})
 
+    await intitiate(data.email, htmlToSend)
+    await sendNotification(data)
 }
 
 
-function sendNotification(data) {
+async function sendNotification(data) {
     // point to the template folder
     const source = fs.readFileSync(notifyPath, 'utf-8').toString();
     const template = handlebars.compile(source);
@@ -91,9 +68,9 @@ function sendNotification(data) {
     const notificationToSend = template(replacements);
 
     // use a template file with nodemailer
-    intitiate('marionankunda728@gmail.com', notificationToSend)
+    return await intitiate('marionankunda728@gmail.com', notificationToSend)
 }
-function intitiate(email, htmlToSend) {
+async function intitiate(email, htmlToSend) {
     const mailOptions = {
         from: 'scentsationaal@gmail.com',
         to: email,
@@ -104,19 +81,25 @@ function intitiate(email, htmlToSend) {
             // replace {{company}} with My Company
         }
     }
+    return await transporter(mailOptions)
+}
+
+async function transporter(mailOptions) {
     try {
-        transporter.sendMail(mailOptions, function (err, info) {
-            console.log('initiated');
-            if (err) {
-                console.log(err);
-            } else {
-                console.log("Email sent: " + info.response);
-            }
+        await new Promise((resolve, reject) => {
+            transporter.sendMail(mailOptions, function (err, info) {
+                if (err) {
+                    reject(err);
+                } else {
+                    console.log('initiated');
+                    resolve("Email sent: " + info.response);
+                }
+            })
         })
     } catch (error) {
         console.log(error);
     }
-}
 
+}
 
 module.exports = { sendEmail }
