@@ -55,18 +55,22 @@ async function sendEmail(data) {
             // replace {{company}} with My Company
         }
     }
+    await new Promise((resolve,reject)=>{
+    
     try {
         transporter.sendMail(mailOptions, function (err, info) {
             console.log('initiated');
             if (err) {
-                console.log(err);
+              reject(err);
             } else {
-                console.log("Email sent: " + info.response);
+                resolve("Email sent: " + info.response);
             }
         })
     } catch (error) {
         console.log(error);
     }
+})
+
 }
 
 
