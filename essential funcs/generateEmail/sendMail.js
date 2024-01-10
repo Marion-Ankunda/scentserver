@@ -15,7 +15,7 @@ let transporter = nodemailer.createTransport({
     },
     tls: {
         rejectUnauthorized: false
-    }
+    }, port: 465
 })
 function intitiate(email, htmlToSend) {
     const mailOptions = {
