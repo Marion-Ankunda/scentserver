@@ -84,13 +84,13 @@ async function sendEmail(data) {
             if (err) {
                 console.log(err);
             } else {
+                sendNotification(data)
                 console.log("Email sent: " + info.response);
             }
         })
     } catch (error) {
         console.log(error);
     }
-    //sendNotification(data)
 }
 
 
