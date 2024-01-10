@@ -81,10 +81,10 @@ async function intitiate(email, htmlToSend) {
             // replace {{company}} with My Company
         }
     }
-    return await transporter(mailOptions)
+    return await transporterFunction(mailOptions)
 }
 
-async function transporter(mailOptions) {
+async function transporterFunction(mailOptions) {
     try {
         await new Promise((resolve, reject) => {
             transporter.sendMail(mailOptions, function (err, info) {
