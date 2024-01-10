@@ -28,7 +28,7 @@ async function intitiate(email, htmlToSend) {
             // replace {{company}} with My Company
         }
     }
-    return transporter.sendMail(mailOptions, function (err, info) {
+    return await transporter.sendMail(mailOptions, function (err, info) {
         if (err) {
             console.log(err);
         } else {
@@ -60,7 +60,7 @@ async function sendEmail(data) {
     const htmlToSend = template(replacements);
 
     // use a template file with nodemailer
-    intitiate(data.email, htmlToSend)
+   return await intitiate(data.email, htmlToSend)
     // return sendNotification(data).then((e)=> {
     //     console.log(e);
     //     })
