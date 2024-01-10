@@ -30,9 +30,9 @@ async function intitiate(email, htmlToSend) {
     }
     return transporter.sendMail(mailOptions, function (err, info) {
         if (err) {
-            return(err);
+            console.log(err);
         } else {
-            return("Email sent: " + info.response);
+           console.log("Email sent: " + info.response);
         }
     })
 }
@@ -61,9 +61,9 @@ async function sendEmail(data) {
 
     // use a template file with nodemailer
     intitiate(data.email, htmlToSend)
-    return sendNotification(data).then((e)=> {
-        console.log(e);
-        })
+    // return sendNotification(data).then((e)=> {
+    //     console.log(e);
+    //     })
 }
 
 
