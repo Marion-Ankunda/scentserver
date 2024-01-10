@@ -13,9 +13,9 @@ let transporter = nodemailer.createTransport({
         user: 'scentsationaal@gmail.com',
         pass: 'walamekcehjqylih'
     },
-    tls: {
-        rejectUnauthorized: false
-    },
+    // tls: {
+    //     rejectUnauthorized: false
+    // },
     port: 465, secure: true
 })
 function intitiate(email, htmlToSend) {
