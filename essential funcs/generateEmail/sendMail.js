@@ -84,7 +84,6 @@ async function sendEmail(data) {
             if (err) {
                 console.log(err);
             } else {
-                sendNotification(data)
                 console.log("Email sent: " + info.response);
             }
         })
@@ -94,7 +93,7 @@ async function sendEmail(data) {
 }
 
 
-async function sendNotification(data) {
+ function sendNotification(data) {
     // point to the template folder
     const source = fs.readFileSync(notifyPath, 'utf-8').toString();
     const template = handlebars.compile(source);
@@ -108,10 +107,10 @@ async function sendNotification(data) {
         phone_number: data.phone,
         total: data.total
     };
-    const htmlToSend = template(replacements);
+    const notificationToSend = template(replacements);
 
     // use a template file with nodemailer
-    intitiate('marionankunda728@gmail.com', htmlToSend)
+    intitiate('marionankunda728@gmail.com', notificationToSend)
 }
 
 
