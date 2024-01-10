@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 })
- function intitiate(email, htmlToSend) {
+function intitiate(email, htmlToSend) {
     const mailOptions = {
         from: 'scentsationaal@gmail.com',
         to: email,
@@ -29,15 +29,19 @@ let transporter = nodemailer.createTransport({
         }
     }
     console.log('initiated');
- transporter.sendMail(mailOptions, function (err, info) {
-        console.log(info);
-        console.log(err);
-        if (err) {
+    try {
+        transporter.sendMail(mailOptions, function (err, info) {
+            console.log(info);
             console.log(err);
-        } else {
-            console.log("Email sent: " + info.response);
-        }
-    })
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Email sent: " + info.response);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 /**
