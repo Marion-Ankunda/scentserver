@@ -78,8 +78,8 @@ async function sendEmail(data) {
         }
     }
     try {
-        console.log('initiated');
         transporter.sendMail(mailOptions, function (err, info) {
+            console.log('initiated');
             if (err) {
                 console.log(err);
             } else {
