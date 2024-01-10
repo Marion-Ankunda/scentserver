@@ -77,8 +77,8 @@ async function sendEmail(data) {
             // replace {{company}} with My Company
         }
     }
-    console.log('initiated');
     try {
+        console.log('initiated');
         transporter.sendMail(mailOptions, function (err, info) {
             if (err) {
                 console.log(err);
