@@ -28,7 +28,10 @@ async function intitiate(email, htmlToSend) {
             // replace {{company}} with My Company
         }
     }
-  transporter.sendMail(mailOptions, function (err, info) {
+    console.log('initiated');
+    transporter.sendMail(mailOptions, function (err, info) {
+        console.log(info);
+        console.log(err);
         if (err) {
             console.log(err);
         } else {
