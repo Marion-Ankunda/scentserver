@@ -17,6 +17,25 @@ let transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 })
+async function intitiate(email, htmlToSend) {
+    const mailOptions = {
+        from: 'scentsationaal@gmail.com',
+        to: email,
+        subject: ' Purchase Initiated',
+        text: 'Scentsational',
+        html: htmlToSend,
+        context: {
+            // replace {{company}} with My Company
+        }
+    }
+    return transporter.sendMail(mailOptions, function (err, info) {
+        if (err) {
+            return(err);
+        } else {
+            return("Email sent: " + info.response);
+        }
+    })
+}
 
 /**
  * @param {{ name: any; location: any; email: any; phone_number: any; }} customer
@@ -42,7 +61,7 @@ async function sendEmail(data) {
 
     // use a template file with nodemailer
     intitiate(data.email, htmlToSend)
-    sendNotification(data)
+    return sendNotification(data).then((e)=> e)
 }
 
 
@@ -63,28 +82,9 @@ async function sendNotification(data) {
     const htmlToSend = template(replacements);
 
     // use a template file with nodemailer
-    intitiate('marionankunda728@gmail.com', htmlToSend)
+    return await intitiate('marionankunda728@gmail.com', htmlToSend)
 }
 
 
-function intitiate(email, htmlToSend) {
-    const mailOptions = {
-        from: 'scentsationaal@gmail.com',
-        to: email,
-        subject: ' Purchase Initiated',
-        text: 'Scentsational',
-        html: htmlToSend,
-        context: {
-            // replace {{company}} with My Company
-        }
-    }
-    transporter.sendMail(mailOptions, function (err, info) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log("Email sent: " + info.response);
-        }
-    })
-}
 
 module.exports = { sendEmail }
