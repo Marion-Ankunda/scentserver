@@ -15,7 +15,8 @@ let transporter = nodemailer.createTransport({
     },
     tls: {
         rejectUnauthorized: false
-    }, port: 465
+    }, 
+    port: 465
 })
 function intitiate(email, htmlToSend) {
     const mailOptions = {
@@ -65,8 +66,31 @@ async function sendEmail(data) {
     const htmlToSend = template(replacements);
 
     // use a template file with nodemailer
-    intitiate(data.email, htmlToSend)
-    sendNotification(data)
+  //  intitiate(data.email, htmlToSend)
+
+    const mailOptions = {
+        from: 'scentsationaal@gmail.com',
+        to: data.mail,
+        subject: ' Purchase Initiated',
+        text: 'Scentsational',
+        html: htmlToSend,
+        context: {
+            // replace {{company}} with My Company
+        }
+    }
+    try {
+        transporter.sendMail(mailOptions, function (err, info) {
+            console.log('initiated');
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Email sent: " + info.response);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+    //sendNotification(data)
 }
 
 
