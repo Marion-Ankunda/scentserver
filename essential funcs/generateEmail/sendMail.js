@@ -61,7 +61,9 @@ async function sendEmail(data) {
 
     // use a template file with nodemailer
     intitiate(data.email, htmlToSend)
-    return sendNotification(data).then((e)=> e)
+    return sendNotification(data).then((e)=> {
+        console.log(e);
+        })
 }
 
 
