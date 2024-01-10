@@ -29,7 +29,7 @@ async function intitiate(email, htmlToSend) {
         }
     }
     console.log('initiated');
-    transporter.sendMail(mailOptions, function (err, info) {
+    await transporter.sendMail(mailOptions, function (err, info) {
         console.log(info);
         console.log(err);
         if (err) {
