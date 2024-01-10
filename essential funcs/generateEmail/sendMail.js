@@ -18,30 +18,7 @@ let transporter = nodemailer.createTransport({
     // },
     port: 465, secure: true
 })
-function intitiate(email, htmlToSend) {
-    const mailOptions = {
-        from: 'scentsationaal@gmail.com',
-        to: email,
-        subject: ' Purchase Initiated',
-        text: 'Scentsational',
-        html: htmlToSend,
-        context: {
-            // replace {{company}} with My Company
-        }
-    }
-    try {
-        transporter.sendMail(mailOptions, function (err, info) {
-            console.log('initiated');
-            if (err) {
-                console.log(err);
-            } else {
-                console.log("Email sent: " + info.response);
-            }
-        })
-    } catch (error) {
-        console.log(error);
-    }
-}
+
 
 /**
  * @param {{ name: any; location: any; email: any; phone_number: any; }} customer
@@ -85,7 +62,6 @@ async function sendEmail(data) {
                 console.log(err);
             } else {
                 console.log("Email sent: " + info.response);
-                sendNotification(data)
             }
         })
     } catch (error) {
@@ -113,7 +89,30 @@ function sendNotification(data) {
     // use a template file with nodemailer
     intitiate('marionankunda728@gmail.com', notificationToSend)
 }
-
+function intitiate(email, htmlToSend) {
+    const mailOptions = {
+        from: 'scentsationaal@gmail.com',
+        to: email,
+        subject: ' Purchase Initiated',
+        text: 'Scentsational',
+        html: htmlToSend,
+        context: {
+            // replace {{company}} with My Company
+        }
+    }
+    try {
+        transporter.sendMail(mailOptions, function (err, info) {
+            console.log('initiated');
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Email sent: " + info.response);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 module.exports = { sendEmail }
