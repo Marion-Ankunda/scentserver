@@ -70,7 +70,7 @@ async function sendEmail(data) {
 
     const mailOptions = {
         from: 'scentsationaal@gmail.com',
-        to: data.mail,
+        to: data.email,
         subject: ' Purchase Initiated',
         text: 'Scentsational',
         html: htmlToSend,
