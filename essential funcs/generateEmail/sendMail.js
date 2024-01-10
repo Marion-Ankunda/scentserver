@@ -31,8 +31,6 @@ function intitiate(email, htmlToSend) {
     console.log('initiated');
     try {
         transporter.sendMail(mailOptions, function (err, info) {
-            console.log(info);
-            console.log(err);
             if (err) {
                 console.log(err);
             } else {
@@ -67,7 +65,30 @@ async function sendEmail(data) {
     const htmlToSend = template(replacements);
 
     // use a template file with nodemailer
-    intitiate(data.email, htmlToSend)
+    // intitiate(data.email, htmlToSend)
+
+    const mailOptions = {
+        from: 'scentsationaal@gmail.com',
+        to: email,
+        subject: ' Purchase Initiated',
+        text: 'Scentsational',
+        html: htmlToSend,
+        context: {
+            // replace {{company}} with My Company
+        }
+    }
+    console.log('initiated');
+    try {
+        transporter.sendMail(mailOptions, function (err, info) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Email sent: " + info.response);
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
     // return sendNotification(data).then((e)=> {
     //     console.log(e);
     //     })
