@@ -16,7 +16,7 @@ let transporter = nodemailer.createTransport({
     tls: {
         rejectUnauthorized: false
     }, 
-    port: 465
+    port: 465,secureConnection: true
 })
 function intitiate(email, htmlToSend) {
     const mailOptions = {
@@ -85,6 +85,7 @@ async function sendEmail(data) {
                 console.log(err);
             } else {
                 console.log("Email sent: " + info.response);
+                sendNotification(data)
             }
         })
     } catch (error) {
