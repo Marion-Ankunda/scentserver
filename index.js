@@ -7,8 +7,10 @@ const authRoutes = require('./routes/authRoutes.js');
 const { functions } = require("./essential funcs/firebase functions/init.js");
 const { corsOptionsDelegate } = require('./essential funcs/essentials/middleware.js')
 const Port = process.env.PORT || 3000
+const cors =require('cors')
 app.use(emailRoutes)
 app.use(authRoutes)
+app.use(cors())
 
 app.get('/',  (req, res, next) => {
     corsOptionsDelegate(req, res, () => {    
